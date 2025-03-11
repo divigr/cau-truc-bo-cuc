@@ -162,6 +162,14 @@
         flex: 1;
       }
 
+.layout-wrapper-video {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
       .video-section video {
         width: 100%;
         height: auto;
@@ -176,6 +184,12 @@
 font-style: italic;
   display: block;
       }
+
+.video-base {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
 
       /* Responsive Design */
       @media only screen and (max-width: 600px) {
@@ -264,6 +278,13 @@ font-style: italic;
           margin-bottom: 10px;
           object-fit: cover;
         }
+ .video-base {
+        width: 100%;
+    }
+
+  .layout-wrapper-video {
+        flex-direction: column;
+    }
 
  .video-section {
           width: 100%;
@@ -314,6 +335,25 @@ font-style: italic;
         <span class="ck_desc_img">mặt ghi tĩnh của lò hơi công nghiệp</span>
       </trust>
     </div>
+    <!-- cấu trúc 2 video  -->
+
+<div class="layout-wrapper-video">
+    <trust>
+        <video autoplay muted loop playsinline class="video-base">
+            <source src="https://divigroup.com.vn/vnt_upload/news/09_2024/buong_dot_lo_hoi_ghi_xich.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
+        <span class="ck_desc_video">buồng đốt lò hơi công nghiệp nghi tĩnh</span>
+    </trust>
+    <trust>
+        <video autoplay muted loop playsinline class="video-base">
+            <source src="https://divigroup.com.vn/vnt_upload/news/09_2024/mat_ghi_xich_lo_hoi_cong_nghiep.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
+        <span class="ck_desc_video">mặt ghi tĩnh của lò hơi công nghiệp</span>
+    </trust>
+</div>
+
     <div class="layout-wrapper">
       <div class="image-section">
         <trust
