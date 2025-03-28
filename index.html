@@ -4,303 +4,315 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style type="text/css">
-      /* table */
+<style type="text/css">/* table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background-color: #eb0015;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 12px;
+      border: 1px solid #dddddd;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    /* khung bai viet */
+    .layout-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .image-section,
+    .text-section {
+      flex: 1;
+    }
+
+    .youtube_image {
+      width: 100%;
+      height: 400px;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+blockquote {
+      color: #0044cc ;
+      border-left: 5px solid #0044cc ;
+      padding: 10px 20px ;
+      background-color: #f0f8ff ; 
+      font-style: italic ;
+      margin: 20px 0 ;
+  }
+    /* Text section styling */
+    .text-section {
+      padding: 20px;
+    }
+
+    .text-section h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .text-section p {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Photo base styling */
+    .photo_base {
+      text-align: center;
+      object-fit: cover;
+    }
+
+    /* Custom title styling */
+    .title-custom-bugs-css {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px auto 50px;
+      text-align: center;
+      font-size: 30px;
+      color: #ff0000;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* Card container */
+    .card-container-post {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* Card post styling */
+    .card-post {
+      padding: 10px;
+      flex: 1 1 calc(33.333% - 20px);
+      border: 1px solid #ccc;
+      text-align: center;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-post:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-post img {
+      width: 100%;
+      height: 200px !important;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .card-post h3 {
+      margin: 10px 0;
+      font-size: 1.5rem;
+    }
+
+    .card-post span {
+      color: black;
+      font-size: 15px;
+    }
+    .dot_dau_diesel {
+      transform: scale(1);
+    }
+
+    .layout-wrapper-image {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: no-wrap;
+    }
+
+    .layout-wrapper-image trust {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .layout-wrapper-image trust img {
+      max-width: 100%;
+      width: 500px;
+      object-fit: contain;
+    }
+
+    .ck_desc_img {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+    /* video post styling */
+    .layout-wrapper-video {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: no-wrap;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.text-section {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.video-section {
+  flex: 1 1 50%;
+  width: 100%;
+  min-width: 300px;
+}
+
+.video-section video {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.ck_desc_video {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000;
+  text-align: center;
+  display: block;
+  font-style: italic;
+  font-weight: bold
+}
+
+
+
+.video-base {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+
+
+    /* Responsive Design */
+    @media only screen and (max-width: 600px) {
       table {
         width: 100%;
-        border-collapse: collapse;
       }
 
-      th {
-        background-color: #eb0015;
-        color: white;
-        padding: 12px;
-        text-align: left;
+      thead {
+        display: none;
+      }
+
+      tbody,
+      tr {
+        display: block;
+        width: 100%;
+      }
+
+      tr {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #ddd;
       }
 
       td {
-        padding: 12px;
-        border: 1px solid #dddddd;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
-      /* khung bai viet */
-      .layout-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px dashed #ccc;
+        word-wrap: break-word;
+      }
+
+      td::before {
+        content: attr(data-label);
+        flex-basis: 30%;
+        text-align: left;
+        font-weight: bold;
+        padding-right: 10px;
+      }
+      .layout-wrapper {
+        flex-direction: column;
       }
 
       .image-section,
       .text-section {
-        flex: 1;
+        width: 100%;
       }
 
-      .youtube_image {
-        width: 100%;
-        height: 400px;
-      }
-
-      .image-section img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
-  blockquote {
-        color: #0044cc ;
-        border-left: 5px solid #0044cc ;
-        padding: 10px 20px ;
-        background-color: #f0f8ff ; 
-        font-style: italic ;
-        margin: 20px 0 ;
-    }
-      /* Text section styling */
       .text-section {
-        padding: 20px;
+        padding: 15px;
       }
 
       .text-section h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-      }
-
-      .text-section p {
-        font-size: 15px;
-        color: #333;
-        line-height: 1.6;
-      }
-
-      /* Photo base styling */
-      .photo_base {
-        text-align: center;
-        object-fit: cover;
-      }
-
-      /* Custom title styling */
-      .title-custom-bugs-css {
-        width: 100%;
-        max-width: 1200px;
-        margin: 20px auto 50px;
-        text-align: center;
-        font-size: 30px;
-        color: #ff0000;
-        text-decoration: underline;
-        font-weight: bold;
-      }
-
-      /* Card container */
-      .card-container-post {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-      }
-
-      /* Card post styling */
-      .card-post {
-        padding: 10px;
-        flex: 1 1 calc(33.333% - 20px);
-        border: 1px solid #ccc;
-        text-align: center;
-        margin-bottom: 10px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .card-post:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .card-post img {
-        width: 100%;
-        height: 200px !important;
-        margin-bottom: 10px;
-        object-fit: cover;
-      }
-
-      .card-post h3 {
-        margin: 10px 0;
         font-size: 1.5rem;
       }
 
-      .card-post span {
-        color: black;
-        font-size: 15px;
-      }
-      .dot_dau_diesel {
-        transform: scale(1);
-      }
-
-      .layout-wrapper-image {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: no-wrap;
-      }
-
-      .layout-wrapper-image trust {
-        display: flex;
+      .card-container-post {
         flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
+        width: 100%;
       }
 
-      .layout-wrapper-image trust img {
-        max-width: 100%;
-        width: 500px;
-        object-fit: contain;
-      }
-
-      .ck_desc_img {
-        margin-top: 10px;
-        text-align: center;
-        font-size: 14px;
-        color: #333;
-      }
-
-.video-section {
+      .card-post {
         flex: 1;
       }
 
-.layout-wrapper-video {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.layout-wrapper-video trust {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 480px;
-}
-
-.video-base {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.ck_desc_video {
-    margin-top: 8px;
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-}
-
-
-
-      /* Responsive Design */
-      @media only screen and (max-width: 600px) {
-        table {
-          width: 100%;
-        }
-
-        thead {
-          display: none;
-        }
-
-        tbody,
-        tr {
-          display: block;
-          width: 100%;
-        }
-
-        tr {
-          margin-bottom: 1rem;
-          border-bottom: 1px solid #ddd;
-        }
-
-        td {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          text-align: left;
-          padding: 10px;
-          border-bottom: 1px dashed #ccc;
-          word-wrap: break-word;
-        }
-
-        td::before {
-          content: attr(data-label);
-          flex-basis: 30%;
-          text-align: left;
-          font-weight: bold;
-          padding-right: 10px;
-        }
-        .layout-wrapper {
-          flex-direction: column;
-        }
-
-        .image-section,
-        .text-section {
-          width: 100%;
-        }
-
-        .text-section {
-          padding: 15px;
-        }
-
-        .text-section h1 {
-          font-size: 1.5rem;
-        }
-
-        .card-container-post {
-          flex-direction: column;
-          width: 100%;
-        }
-
-        .card-post {
-          flex: 1;
-        }
-
-        .title-custom-bugs-css {
-          width: auto;
-        }
-        .layout-wrapper-image {
-          flex-direction: column;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
-        }
-         blockquote {
-        color: #0044cc;
-        border-left: 5px solid #0044cc;
-        padding: 10px 20px;
-        background-color: #f0f8ff; 
-        font-style: italic;
-        margin: 20px 0;
-    }
-        .layout-wrapper-image img {
-          width: 100%;
-          height: auto;
-          margin-bottom: 10px;
-          object-fit: cover;
-        }
- .video-base {
-        width: 100%;
-    }
-
-  .layout-wrapper-video {
-        flex-direction: column;
-    }
-
- .video-section {
-          width: 100%;
-        }
-
-        .video-section video {
-          width: 100%;
-          height: auto;
-        }
+      .title-custom-bugs-css {
+        width: auto;
       }
-    </style>
+      .layout-wrapper-image {
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+       blockquote {
+      color: #0044cc;
+      border-left: 5px solid #0044cc;
+      padding: 10px 20px;
+      background-color: #f0f8ff; 
+      font-style: italic;
+      margin: 20px 0;
+  }
+      .layout-wrapper-image img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        object-fit: cover;
+      }
+.video-base {
+      width: 100%;
+  }
+
+.layout-wrapper-video {
+      flex-direction: column;
+  }
+
+.video-section {
+        width: 100%;
+      }
+
+      .video-section video {
+        width: 100%;
+        height: auto;
+      }
+    }
+</style>
   </head>
   <body>
 <!-- cấu trúc blogquote -->
@@ -309,17 +321,25 @@
 </blockquote>
 
     <!-- cấu trúc video  -->
-<div class="layout-wrapper">
-<div class="text-section">
-<p data-end="1397" data-start="1015">Một trong những sai lầm nghiêm trọng khi <strong data-end="1076" data-start="1056">vận hành nồi hơi ( lò hơi )</strong> là tiếp tục bơm nước vào khi nồi hơi đã cạn. Điều này không chỉ làm giảm hiệu suất làm việc mà còn có thể gây ra hậu quả nghiêm trọng như giãn nở nhiệt đột ngột, khiến bề mặt kim loại trong lò bị nứt vỡ. Khi kim loại thay đổi nhiệt độ đột ngột, kết cấu vật liệu sẽ bị ảnh hưởng, dễ dẫn đến rò rỉ hoặc thậm chí phát nổ.</p>
+<div class="layout-wrapper-video">
+    <div class="text-section">
+      <p>Một trong những sai lầm nghiêm trọng khi <strong>vận hành nồi hơi ( lò hơi )</strong> là tiếp tục bơm nước vào khi nồi hơi đã cạn. Điều này không chỉ làm giảm hiệu suất làm việc mà còn có thể gây ra hậu quả nghiêm trọng như giãn nở nhiệt đột ngột, khiến bề mặt kim loại trong lò bị nứt vỡ. Khi kim loại thay đổi nhiệt độ đột ngột, kết cấu vật liệu sẽ bị ảnh hưởng, dễ dẫn đến rò rỉ hoặc thậm chí phát nổ.</p>
+      
+      <p>Để tránh tình trạng này, trước khi bổ sung nước vào <strong>lò hơi</strong>, người vận hành cần kiểm tra kỹ <strong>mực nước</strong>, áp suất và trạng thái của hệ thống cấp nước. Nếu phát hiện <strong>nồi hơi</strong> đã cạn nước cấp 2, không được phép bơm nước ngay lập tức mà phải ngừng lò, tiến hành kiểm tra và đảm bảo áp suất được ổn định trước khi tiếp tục vận hành. Đây là nguyên tắc quan trọng giúp bảo vệ hệ thống và đảm bảo an toàn cho quá trình <strong>vận hành nồi hơi ( lò hơi )</strong>.</p>
+    </div>
+  
+    <div class="video-section">
+      <video autoplay loop muted>
+        <source src="https://divigroup.com.vn/vnt_upload/news/03_2025/Khong_bom_nuoc_khi_noi_hoi_can_de_tranh_no_lo__Quy_tac_an_toan_khi_van_hanh_noi_hoi_lo_hoi.mp4" type="video/mp4" />
+        Trình duyệt của bạn không hỗ trợ thẻ video.
+      </video>
+      <span class="ck_desc_video">
+        Không bơm nước khi nồi hơi cạn để tránh nổ lò – Quy tắc an toàn khi vận hành nồi hơi, lò hơi
+      </span>
+    </div>
+  </div>
+  
 
-<p data-end="1837" data-is-last-node="" data-is-only-node="" data-start="1399">Để tránh tình trạng này, trước khi bổ sung nước vào <strong data-end="1461" data-start="1451">lò hơi</strong>, người vận hành cần kiểm tra kỹ <strong data-end="1506" data-start="1494">mực nước</strong>, áp suất và trạng thái của hệ thống cấp nước. Nếu phát hiện <strong data-end="1578" data-start="1567">nồi hơi</strong> đã cạn nước cấp 2, không được phép bơm nước ngay lập tức mà phải ngừng lò, tiến hành kiểm tra và đảm bảo áp suất được ổn định trước khi tiếp tục vận hành. Đây là nguyên tắc quan trọng giúp bảo vệ hệ thống và đảm bảo an toàn cho quá trình <strong data-end="1076" data-start="1056">vận hành nồi hơi ( lò hơi )</strong>.</p>
-</div>
-
-<div class="video-section">
-<video autoplay="" loop="" muted=""><source src="/vnt_upload/news/03_2025/Khong_bom_nuoc_khi_noi_hoi_can_de_tranh_no_lo__Quy_tac_an_toan_khi_van_hanh_noi_hoi_lo_hoi.mp4" type="video/mp4" /> Trình duyệt của bạn không hỗ trợ thẻ video.</video>
-<span class="ck_desc_video">Không bơm nước khi nồi hơi cạn để tránh nổ lò – Quy tắc an toàn khi vận hành nồi hơi, lò hơi</span></div>
-</div>
     <!-- cấu trúc 2 ảnh  -->
 
     <div class="layout-wrapper-image">
