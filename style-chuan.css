@@ -1,5 +1,4 @@
-<style type="text/css">
-  /* ================= TABLE ================= */
+<style type="text/css">/* ================= TABLE ================= */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -378,128 +377,163 @@
       max-width: 320px;
     }
   }
-/* ============ VIDEO SLIDER ============ */
-.video-slider-wrapper {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 16px;
-  box-sizing: border-box;
+/* ============ DIVI VIDEO SLIDER V2 ============ */
+.divi-yt2-wrap{
+  max-width:1200px;
+  margin:40px auto;
+  padding:0 16px;
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-.video-slider-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
+.divi-yt2-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
 }
 
-.video-slider-header h2 {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0;
+.divi-yt2-header p{
+  font-size:22px;
+  font-weight:700;
+  margin:0;
+align-item: center;
 }
 
-.video-slider-controls {
-  display: flex;
-  gap: 8px;
+.divi-yt2-controls{
+  display:flex;
+  gap:8px;
 }
 
-.video-slider-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-  background: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  line-height: 30px;
-  text-align: center;
-  padding: 0;
-  transition: all .2s ease;
+.divi-yt2-btn{
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:1px solid #ddd;
+  background:#fff;
+  cursor:pointer;
+  font-size:20px;
+  line-height:32px;
+  text-align:center;
+  padding:0;
+  transition:.2s;
 }
 
-.video-slider-btn:hover {
-  border-color: #e53935;
-  color: #e53935;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.divi-yt2-btn:hover{
+  border-color:#e53935;
+  color:#e53935;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
-.video-slider {
-  position: relative;
-  overflow: hidden;
+.divi-yt2-view{
+  overflow:hidden;   /* chỉ ẩn ngang, không fix height */
+  width:100%;
 }
 
-.video-slider-track {
-  display: flex;
-  transition: transform .3s ease;
+.divi-yt2-track{
+  display:flex;
+  transition:transform .35s ease;
+  width:100%;
 }
 
-.video-slide {
-  flex: 0 0 calc(100% / 3);  /* desktop: 3 video */
-  padding: 8px;
-  box-sizing: border-box;
+/* Desktop: 2 video / lần */
+.divi-yt2-slide{
+  flex:0 0 50%;
+  padding:8px;
+  box-sizing:border-box;
 }
 
-.video-slide iframe {
-  width: 100%;
-  height: 220px;
-  border: 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+/* Video luôn 16:9, full thumbnail + nút play */
+.divi-yt2-slide iframe{
+  width:100%;
+  aspect-ratio:16 / 9;
+  height:auto;
+  border:0;
+  border-radius:12px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
 }
 
-/* Mobile / tablet: hiện 2 video */
-@media (max-width: 768px) {
-  .video-slide {
-    flex: 0 0 50%;
+@media (max-width:768px){
+  .divi-yt2-slide{
+    flex:0 0 100%;
   }
-  .video-slide iframe {
-    height: 180px;
-  }
 }
-
 </style>
-
-
-
 <script>
-  (function () {
-    const track = document.getElementById('videoTrack');
-    const btnPrev = document.getElementById('videoPrev');
-    const btnNext = document.getElementById('videoNext');
-    const slides = track.querySelectorAll('.video-slide');
+document.addEventListener("DOMContentLoaded", function(){
+  const track  = document.getElementById("divi2Track");
+  const prev   = document.getElementById("divi2Prev");
+  const next   = document.getElementById("divi2Next");
+  const slides = track.querySelectorAll(".divi-yt2-slide");
+  const total  = slides.length;
 
-    const total = slides.length;
-    let currentIndex = 0;
+  let index = 0;
+  let timer = null;
 
-    function getVisibleCount() {
-      return window.innerWidth <= 768 ? 2 : 3; // mobile: 2, desktop: 3
-    }
+  function visibleCount(){
+    return window.innerWidth <= 768 ? 1 : 2; // mobile 1, desktop 2
+  }
 
-    function updateSlider() {
-      const visible = getVisibleCount();
-      const maxIndex = Math.max(0, total - visible);
-      if (currentIndex > maxIndex) currentIndex = maxIndex;
-      if (currentIndex < 0) currentIndex = 0;
+  function updateSlider(){
+    const visible = visibleCount();
+    const max = Math.max(0, total - visible);
 
-      const slideWidth = track.clientWidth / visible;
-      const offset = -(slideWidth * currentIndex);
-      track.style.transform = 'translateX(' + offset + 'px)';
-    }
+    if(index > max) index = 0;     // chạy vòng lặp
+    if(index < 0) index = max;
 
-    btnNext.addEventListener('click', function () {
-      currentIndex += 1;
+    const movePercent = (100 / visible) * index;
+    track.style.transform = "translateX(-" + movePercent + "%)";
+  }
+
+  function startAuto(){
+    stopAuto();
+    timer = setInterval(function(){
+      index++;
       updateSlider();
-    });
+    }, 3000); // 3 giây đổi slide
+  }
 
-    btnPrev.addEventListener('click', function () {
-      currentIndex -= 1;
-      updateSlider();
-    });
+  function stopAuto(){
+    if(timer) clearInterval(timer);
+  }
 
-    window.addEventListener('resize', updateSlider);
-
-    // init
+  next.addEventListener("click", function(){
+    index++;
     updateSlider();
-  })();
+    startAuto(); // reset timer khi bấm tay
+  });
+
+  prev.addEventListener("click", function(){
+    index--;
+    updateSlider();
+    startAuto(); // reset timer khi bấm tay
+  });
+
+  window.addEventListener("resize", updateSlider);
+
+  updateSlider();
+  startAuto(); // khởi động auto slide
+});
 </script>
+
+<div class="divi-yt2-wrap">
+<div class="divi-yt2-header">
+<p>Video hướng dẫn trên kênh DIVI</p>
+
+<div class="divi-yt2-controls"><button aria-label="Video trước" class="divi-yt2-btn" id="divi2Prev">‹</button><button aria-label="Video sau" class="divi-yt2-btn" id="divi2Next">›</button></div>
+</div>
+
+<div class="divi-yt2-view">
+<div class="divi-yt2-track" id="divi2Track">
+<div class="divi-yt2-slide"><iframe allowfullscreen="" src="https://www.youtube.com/embed/WdrHUhfeuUo"></iframe></div>
+
+<div class="divi-yt2-slide"><iframe allowfullscreen="" src="https://www.youtube.com/embed/mpLdorE8I7w"></iframe></div>
+
+<div class="divi-yt2-slide"><iframe allowfullscreen="" src="https://www.youtube.com/embed/zvaeOeTSY8E"></iframe></div>
+
+<div class="divi-yt2-slide"><iframe allowfullscreen="" src="https://www.youtube.com/embed/5gfOkCIodjU"></iframe></div>
+
+<div class="divi-yt2-slide"><iframe allowfullscreen="" src="https://www.youtube.com/embed/b-F9h7cMM4Q"></iframe></div>
+</div>
+</div>
+</div>
