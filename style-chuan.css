@@ -378,4 +378,128 @@
       max-width: 320px;
     }
   }
+/* ============ VIDEO SLIDER ============ */
+.video-slider-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.video-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.video-slider-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.video-slider-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.video-slider-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  transition: all .2s ease;
+}
+
+.video-slider-btn:hover {
+  border-color: #e53935;
+  color: #e53935;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.video-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-slider-track {
+  display: flex;
+  transition: transform .3s ease;
+}
+
+.video-slide {
+  flex: 0 0 calc(100% / 3);  /* desktop: 3 video */
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.video-slide iframe {
+  width: 100%;
+  height: 220px;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Mobile / tablet: hiện 2 video */
+@media (max-width: 768px) {
+  .video-slide {
+    flex: 0 0 50%;
+  }
+  .video-slide iframe {
+    height: 180px;
+  }
+}
+
 </style>
+
+
+
+<script>
+  (function () {
+    const track = document.getElementById('videoTrack');
+    const btnPrev = document.getElementById('videoPrev');
+    const btnNext = document.getElementById('videoNext');
+    const slides = track.querySelectorAll('.video-slide');
+
+    const total = slides.length;
+    let currentIndex = 0;
+
+    function getVisibleCount() {
+      return window.innerWidth <= 768 ? 2 : 3; // mobile: 2, desktop: 3
+    }
+
+    function updateSlider() {
+      const visible = getVisibleCount();
+      const maxIndex = Math.max(0, total - visible);
+      if (currentIndex > maxIndex) currentIndex = maxIndex;
+      if (currentIndex < 0) currentIndex = 0;
+
+      const slideWidth = track.clientWidth / visible;
+      const offset = -(slideWidth * currentIndex);
+      track.style.transform = 'translateX(' + offset + 'px)';
+    }
+
+    btnNext.addEventListener('click', function () {
+      currentIndex += 1;
+      updateSlider();
+    });
+
+    btnPrev.addEventListener('click', function () {
+      currentIndex -= 1;
+      updateSlider();
+    });
+
+    window.addEventListener('resize', updateSlider);
+
+    // init
+    updateSlider();
+  })();
+</script>
